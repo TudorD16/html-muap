@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiapp Help</title>
+    <link rel="icon" type="image/png" href="help/technology.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-image: url('help/backgr.jpg'); /* Calea către imagine */
+            background-size: cover; /* Face ca imaginea să acopere întreaga fereastră */
+            background-repeat: no-repeat; /* Evită repetarea imaginii */
+            background-position: center center; /* Poziționează imaginea în centrul paginii */
+            background-attachment: fixed; /* Fixează imaginea de fundal, astfel încât să nu se miște la derulare */
+            margin: 0; /* Elimină marginile implicite ale corpului paginii */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ccff66; /* titluri culoare #ccff66 */
+            font-weight: bold;
+        }
+        
+        h3 {
+            text-align: center;
+            color: #ccff66; /* titluri culoare #ccff66 */
+        }
+        
+        h2 {
+            text-align: center;
+            color: #ccff66; /* titluri culoare #ccff66 */
+        }
+
+        .content {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            margin: 10px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+        }
+
+        p {
+            text-align: center;
+            transition: all 0.3s ease;
+            color: #fff; /* text alb */
+        }
+
+        p:hover {
+            color: #ff5733; /* culoare text la hover */
+            transform: scale(1.1); /* orice alt efect dorit */
+        }
+
+        .fog {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(to bottom, rgba(204, 204, 204, 0), rgba(204, 204, 204, 1));
+            pointer-events: none;
+            z-index: 0; /* Adăugat z-index pentru ceață */
+        }
+
+        #scrollButton {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 50px; /* Ajustează dimensiunea */
+            height: 50px; /* Ajustează dimensiunea */
+            background-color: #abff04;
+            color: rgb(61, 60, 60);
+            border: none;
+            cursor: pointer;
+            border-radius: 50%; /* Face butonul rotund */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 35px; /* Ajustează dimensiunea fontului */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2; /* Setat un z-index mai mare pentru buton */
+        }
+
+        #scrollButton:hover {
+            background-color: #ccff66; /* Schimbă culoarea de fundal la hover */
+        }
+
+        #CVButton {
+            position: fixed; /* Fixează butonul într-o poziție fixă pe ecran */
+            bottom: 70px; /* Poziționează butonul la 70px de marginea de jos a ferestrei */
+            right: 10px; /* Poziționează butonul la 20px de marginea din dreapta a ferestrei */
+            width: 65px; /* Lățimea butonului - mărită cu 5px față de dimensiunea inițială */
+            height: 65px; /* Înălțimea butonului - mărită cu 5px față de dimensiunea inițială */
+            background-color: #abff04; /* Culoarea de fundal a butonului */
+            color: rgb(61, 60, 60); /* Culoarea textului */
+            border: none; /* Elimină conturul butonului */
+            cursor: pointer; /* Transformă cursorul în pointer la hover */
+            border-radius: 50%; /* Rotunjirea marginilor pentru a face butonul rotund */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Umbră pentru buton */
+            font-size: 30px; /* Dimensiunea fontului */
+            font-weight: bold; /* Textul îngroșat */
+            display: flex; /* Flexibil pentru a centra conținutul */
+            align-items: center; /* Aliniază conținutul pe axa verticală */
+            justify-content: center; /* Aliniază conținutul pe axa orizontală */
+            z-index: 2; /* Stratul z pentru a plasa butonul deasupra altor elemente */
+            background-image: url('help/CV3.png'); /* Imaginea de fundal a butonului */
+            background-size: cover; /* Acoperă întreaga suprafață a butonului */
+            background-position: center; /* Poziționează imaginea în centru */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Tranziții pentru culoarea de fundal și umbră */
+        }
+
+        #CVButton:hover {
+            background-color: #ccff66; /* Schimbă culoarea de fundal la hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Umbră mai mare la hover */
+        }
+
+        /* CSS pentru butonul de meniu și meniu lateral */
+        #menu-btn {
+            font-size: 30px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+        }
+
+        #side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 2;
+            overflow-y: auto;
+            overflow: auto;
+            box-sizing: border-box;
+        }
+
+        #side-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #side-menu ul li {
+            padding: 8px 8px 8px 32px;
+            text-align: left;
+        }
+
+        #side-menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 25px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #side-menu ul li a:hover {
+            color: #ccff66;
+        }
+
+        body.menu-open #side-menu {
+            width: 280px;
+        }
+
+        body.menu-open .content {
+            transition: margin-left 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiapp Help</h1>
+    <button id="menu-btn" onclick="toggleMenu()">☰</button>
+    <div id="side-menu">
+        <ul>
+            <li><a href="#modul-explorer">Modul Explorer</a></li>
+            <li><a href="#aplicatie-copiere">Aplicație de copiere</a></li>
+            <li><a href="#get-ip-mac">Get IP & Mac</a></li>
+            <li><a href="#port-scanner">Port scanner</a></li>
+            <li><a href="#ping-tool">Ping tool</a></li>
+            <li><a href="#find-replace">Find & Replace</a></li>
+            <li><a href="#screen-events">Screen Events</a></li>
+            <li><a href="#create-extract-zip">Create/Extract Zip</a></li>
+            <li><a href="#deschide-fisa-dotari">Deschide fisa de dotari</a></li>
+            <li><a href="#comparator">Comparator</a></li>
+            <li><a href="#text-editor">Text Editor</a></li>
+            <li><a href="#whiteboard">Whiteboard</a></li>
+            <li><a href="#pdf-to-word">PDF to Word</a></li>
+            <li><a href="#pdf-tools">PDF Tools</a></li>
+            <li><a href="#backup-utility">Backup Utility</a></li>
+            <li><a href="#rename-utility">Rename Utility</a></li>
+            <li><a href="#system-info">System Info</a></li>
+            <li><a href="#real-time-system-info">Real time system information</a></li>
+            <li><a href="#network-console">Network Console</a></li>
+            <li><a href="#ai-chatbot">AI Chatbot</a></li>
+            <li><a href="#read-me-first">Read me first</a></li>
+            <li><a href="#copierea-fisierelor">Copierea fișierelor</a></li>
+            <li><a href="#terminal-emulator">Terminal Emulator</a></li>
+            <li><a href="#generarea-parolelor">Generarea parolelor</a></li>
+            <li><a href="#monitorizarea-benzii-retelei">Monitorizarea benzii rețelei</a></li>
+            <li><a href="#criptarea-fisierelor">Criptarea fișierelor</a></li>
+            <li><a href="#testare">Testare</a></li>
+            <li><a href="#spargerea-parolelor-zip">Spargerea parolelor ZIP</a></li>
+            <li><a href="#knowledge-base">Knowledge Base</a></li>
+            <li><a href="#password-manager">Password Manager</a></li>
+            <li><a href="#pause-manager">Pause Manager</a></li>
+            <li><a href="#task-manager">Task Manager</a></li>
+            <li><a href="#file-organizer">File Organizer</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <p>Multiapp este un instrument puternic destinat gestionării activităților dintr-un departament IT sau suport IT. Acest ghid explică fiecare funcționalitate a aplicației și modul în care pot fi utilizate conturile pentru uz public, salvate în fișierul `Accounts.txt`.</p>
+
+        <h2>Logare</h2>
+        <p>- <strong>Conturi publice</strong>: Salvate în `Accounts.txt`.</p>
+        <p>- <strong>Cont IT</strong>: Utilizator `it`, parola `copiere`.</p>
+
+        <div class="image-container">
+            <img src="help/image1.png" alt="Logare Imagine">
+        </div>
+
+        <h2>Funcționalități</h2>
+        
+        <div class="image-container">
+            <img src="help/image2.png" alt="Aplicatie">
+        </div>
+
+        <h3 id="modul-explorer">1. Modul Explorer</h3>
+        <p>Permite copierea unor foldere/fișiere într-un mod dinamic. Practic, utilizatorul va salva path-urile locale în fisierele txt corespunzătoare și dacă are nevoie ca procesul să fie automat, parser-ul va ști să caute fiecare path, linie cu linie, pentru ca utilizatorul să economisească timp pentru utilizările viitoare. E ca și cum ai naviga manual în File Explorer, doar că path-urile alese de utilizator vor fi salvate pentru a putea copia mai simplu.</p>
+
+        <h3 id="aplicatie-copiere">2. Aplicatie Copiere</h3>
+        <p>Aplicație copiere: este o aplicație ce gestionează path-urile deja înregistrate de către departamentul IT în vederea copierii fișierelor. Acele path-uri pot fi, de asemenea, dintr-o locație network (pe un server) sau local, din computerul vostru. Acest proces este util pentru a configura un nou calculator, iar primul pas după introducerea în domeniu a noului PC este să copiem programele necesare pentru a-i asigura o bună funcționare care să îndeplinească cerințele din fișa de dotări a departamentului IT. Fișierul destinație va fi C:\KIT. Există un meniu de butoane în dreapta care are corelație cu fișa de dotări: de exemplu, copiezi anumite programe pentru director, deci se bifează automat checkbox-urile cu programele ce urmează să se copieze. Există si un buton care deschide o mini consolă network și este utilă pentru a vedea dacă se copiază fișierele dintr-o locație network sau nu. De regulă, când aplicația nu interacționează prea mult cu internetul, atunci o să vedeți 0.00 ca și valori. (am decis să fie extact 2 zecimale)</p>
+        
+        
+        <div class="image-container">
+            <img src="help/image3.png" alt="Aplicatie Copiere">
+        </div>
+        
+        <p>Față de copierea clasică, aceste două modalități de copiere se realizează într-o manieră mai eficientă (18.8% ~ 20%), deoarece locațiile sunt deja precompilate și biții sunt direct alocați către fișierul destinație.</p>
+
+        <h3 id="get-ip-mac">3. Get IP & Mac</h3>
+        <p>Afișează adresa IP și MAC a PC-ului tău. Pe lângă asta, afișează și adresa MAC a unui device conectat la VLAN sau LAN.</p>
+
+        <div class="image-container">
+            <img src="help/image4.png" alt="Get IP & Mac">
+        </div>
+
+        <h3 id="port-scanner">4. Port Scanner</h3>
+        <p>Afișează toate porturile deschise ale oricărui device aflat în rețea.</p>
+
+        <div class="image-container">
+            <img src="help/image5.png" alt="Port Scanner">
+        </div>
+
+        <h3 id="ping-tool">5. Ping Tool</h3>
+        <p>Execută Ping către anumite device-uri și poate afișa ce porturi sunt deschise.</p>
+
+        <div class="image-container">
+            <img src="help/image6.png" alt="Ping Tool">
+        </div>
+
+        <h3 id="find-replace">6. Find & Replace</h3>
+        <p>Caută un grup de caractere în textul tău și îl poate înlocui cu un alt grup de caractere.</p>
+
+        <div class="image-container">
+            <img src="help/image7.png" alt="Find & Replace">
+        </div>
+
+        <h3 id="screen-events">7. Screen Events</h3>
+        <p>Screen recording & screen shoot.</p>
+
+        <div class="image-container">
+            <img src="help/image8.png" alt="Screen Events">
+        </div>
+
+        <h3 id="create-extract-zip">8. Create/Extract Zip</h3>
+        <p>Creează/extrage o arhivă și poate extrage, de asemenea, doar o selecție dintr-o arhivă. Functionează numai cu zip.</p>
+
+        <div class="image-container">
+            <img src="help/image9.png" alt="Create/Extract Zip">
+        </div>
+
+        <h3 id="deschide-fisa-dotari">9. Deschide fisa de dotari</h3>
+        <p>Se presupune că fisa de dotari este un Excel. Acest tool te va ajuta să deschizi fisa fără a avea nevoie de Office instalat pe noul PC.</p>
+
+        <div class="image-container">
+            <img src="help/image10.png" alt="Deschide fisa de dotari">
+        </div>
+
+        <h3 id="comparator">10. Comparator</h3>
+        <p>Compară 2 fișiere sau 2 foldere pentru a identifica diferențele.</p>
+
+        <div class="image-container">
+            <img src="help/image33.png" alt="Comparator">
+        </div>
+
+        <h3 id="text-editor">11. Text Editor</h3>
+        <p>Este o copie a programului Notepad, utilă pentru notarea rapidă a lucrurilor.</p>
+
+        <div class="image-container">
+            <img src="help/image11.png" alt="Text Editor">
+        </div>
+
+        <h3 id="whiteboard">12. Whiteboard</h3>
+        <p>Un mini Paint pentru scheme/desenat.</p>
+
+        <div class="image-container">
+            <img src="help/image12.png" alt="Whiteboard">
+        </div>
+
+        <h3 id="pdf-to-word">13. PDF to Word</h3>
+        <p>Convertește un fișier PDF în Word și se pot salva și imaginile din acel fișier Word separat.</p>
+
+        <div class="image-container">
+            <img src="help/image13.png" alt="PDF to Word">
+        </div>
+
+        <h3 id="pdf-tools">14. PDF Tools</h3>
+        <p>Oferă diverse tool-uri pentru manipularea unui fișier PDF: criptare/parolare, extragere imagini, rotirea paginilor, separarea paginilor în fișiere PDF multiple și ștergerea paginilor dintr-un fișier PDF.</p>
+
+        <div class="image-container">
+            <img src="help/image14.png" alt="PDF Tools">
+        </div>
+        
+        <h3 id="backup-utility">15. Backup Utility</h3>
+        <p>Oferă funcționalitatea de a crea un backup pentru datele sensibile sau anumite date care urmează a fi modificate și sunt destul de importante. Utilizatorul decide când este util să folosească acest utilitar.</p>
+
+        <div class="image-container">
+            <img src="help/image34.png" alt="Backup Utility">
+        </div>
+        
+        <h3 id="rename-utility">16. Rename Utility</h3>
+        <p>Redenumește anumite fișiere dintr-un folder selectat.</p>
+
+        <div class="image-container">
+            <img src="help/image35.png" alt="Rename Utility">
+        </div>
+
+        <h3 id="system-info">17. System Info</h3>
+        <p>Afișează diverse informații ale sistemului tău și poți opera mai multe lucruri: deschide power planul, introducere a PC-ului în domeniu, generează un raport al bateriei, deschide aplicațiile în Control Panel și poate afișa chiar și licența Windows și service tag-ul.</p>
+
+        <div class="image-container">
+            <img src="help/image15.png" alt="System Info">
+        </div>
+
+        <h3 id="real-time-system-info">18. Real time system information</h3>
+        <p>Afișează în timp real informațiile sistemului tău.</p>
+
+        <div class="image-container">
+            <img src="help/image16.png" alt="Real time system information 1">
+            <img src="help/image17.png" alt="Real time system information 2">
+            <img src="help/image18.png" alt="Real time system information 3">
+            <img src="help/image19.png" alt="Real time system information 4">
+        </div>
+
+        <h3 id="network-console">19. Network Console</h3>
+        <p>Afișează diverse informații despre rețeaua ta: pachetele de date trimise sau primite, parolele wi-fi înregistrate, cine este conectat în LAN, și diverse informații despre rețea.</p>
+
+        <div class="image-container">
+            <img src="help/image20.png" alt="Network Console 1">
+            <img src="help/image21.png" alt="Network Console 2">
+        </div>
+
+        <h3 id="ai-chatbot">20. AI Chatbot</h3>
+        <p>Este asistentul tău virtual pentru aplicație. Explică informațiile necesare pentru funcționarea completă, inclusiv mapările network.</p>
+
+        <div class="image-container">
+            <img src="help/image22.png" alt="AI Chatbot">
+        </div>
+
+        <h3 id="read-me-first">21. Read me first</h3>
+        <p>Oferă o gamă sintetizată de informații pentru a putea folosi aplicația corect și pentru a evita posibilele erori.</p>
+
+        <h3 id="copierea-fisierelor">22. Copierea fișierelor</h3>
+        <p>Dacă se dorește numai copierea fișierelor, atunci există un cont special și anume: user/nopass.</p>
+        <div class="image-container">
+            <img src="help/image32.png" alt="Guest Account">
+        </div>
+
+        <h3 id="terminal-emulator">23. Terminal Emulator</h3>
+        <p>Simulează un CMD normal și chiar o interfață Linux. Accesul este restricționat conform politicilor de securitate.</p>
+
+        <div class="image-container">
+            <img src="help/image23.png" alt="Terminal Emulator">
+        </div>
+
+        <h3 id="generarea-parolelor">24. Generarea parolelor</h3>
+        <p>Există 2 conturi pentru generarea parolelor: passgen/passgen și passgenV2/passgenV2.</p>
+
+        <div class="image-container">
+            <img src="help/image24.png" alt="Generarea parolelor 1">
+            <img src="help/image25.png" alt="Generarea parolelor 2">
+        </div>
+
+        <h3 id="monitorizarea-benzii-retelei">25. Monitorizarea benzii rețelei</h3>
+        <p>Contul bandmonitoring.networking generează un grafic în timp real al comportamentului rețelei tale.</p>
+
+        <div class="image-container">
+            <img src="help/image27.png" alt="Monitorizarea benzii rețelei">
+        </div>
+
+        <h3 id="criptarea-fisierelor">26. Criptarea fișierelor</h3>
+        <p>Contul cryptoV2/securitate criptează datele folosind algoritmi de complexitate ridicată.</p>
+
+        <div class="image-container">
+            <img src="help/image28.png" alt="Criptarea fișierelor">
+        </div>
+
+        <h3 id="testare">27. Testare</h3>
+        <p>Contul quiz/test permite susținerea testelor cu maximum 4 variante de răspuns pentru fiecare întrebare.</p>
+
+        <div class="image-container">
+            <img src="help/image29.png" alt="Testare 1">
+            <img src="help/image30.png" alt="Testare 2">
+        </div>
+
+        <h3 id="spargerea-parolelor-zip">28. Spargerea parolelor ZIP</h3>
+        <p>Contul permite accesul în arhive zip protejate cu parolă. Algoritmii implementați sparg parolele respective.</p>
+
+        <div class="image-container">
+            <img src="help/image31.png" alt="Spargerea parolelor ZIP">
+        </div>
+        
+        <h3 id="knowledge-base">29. Knowledge Base</h3>
+        <p>Aceasta este o platformă locală unde se pot salva tot felul de referințe sau proceduri. Sunt structurate pe categorii diverse (Networking, Hardware, Linux, Printers, Apps, Programming, Others) pentru a le putea găsi mai ușor.</p>
+        
+        <div class="image-container">
+            <img src="help/image37.png" alt="KB">
+        </div>
+        
+        <h3 id="password-manager">30. Password Manager</h3>
+        <p>Este un utilitar ce ajută la salvarea parolelor într-o bază de date criptată.</p>
+        <p>Prima dată, trebuie să se creeze o parolă ce permite accesarea bazei de date.</p>
+        
+        <div class="image-container">
+            <img src="help/image38.png" alt="password manager">
+        </div>
+        
+        <p>Puteți administra parolele salvate, fie să le ștergeți, fie să le schimbați.</p>
+        
+        <div class="image-container">
+            <img src="help/image39.png" alt="password manager">
+        </div>
+        
+        <p>De asemenea, puteți genera o parolă în mod aleatoriu (folosind un algoritm puternic) sau folosind numai caracterele introduse în primul câmp.</p>
+        
+        <div class="image-container">
+            <img src="help/image40.png" alt="password manager">
+        </div>
+
+        <h3 id="pause-manager">31. Pause Manager</h3>
+        <p>Această fereastră vă ajută să gestionați pauzele din cadrul echipei IT, mai ales dacă trebuie să se aloce solicitări/tichete și trebuie să știi cine a revenit sau nu din pauză. Se pot crea liste cu persoanele care sunt în echipa IT folosind meniul de Generare JSON. Acest fișier cu extensia .json va fi salvat în path-ul scris în fișierul ChooseLocationForPause.txt. Am ales să fac în maniera asta, deoarece dacă se dorește ca fișierul să fie accesat pe un server (pentru ca toți membrii echipei să poată vizualiza în timp real modificările pauzelor), de exemplu, atunci este bine ca path-ul să fie variabil (\\192.....\files\ -> exemplu de cale care duce către un server).</p>
+
+        <div class="image-container">
+            <img src="help/image41.png" alt="pause manager">
+        </div>
+
+        <h3 id="task-manager">32. Task Manager</h3>
+        <p>Această consolă este un simplu task manager: închide orice execuție de program, arată procentajul de utilizare al memoriei și al pachetelor de date care se transmit/vin în cadrul rețelei. Desigur, există și o diagramă.</p>
+
+        <div class="image-container">
+            <img src="help/image42.png" alt="Task Manager">
+        </div>
+
+        <div class="image-container">
+            <img src="help/image43.png" alt="Task Manager">
+        </div>
+
+        <h3 id="file-organizer">33. File Organizer</h3>
+        <p>Este un utilitar care ajută să vă organizați folderele pe categorii.</p>
+
+        <div class="image-container">
+            <img src="help/image47.png" alt="File Organizer">
+        </div>
+
+        <br>
+        <p><b>Aceste conturi sunt destinate utilizării publice și accesul este restricționat pentru a preveni utilizarea necorespunzătoare a aplicației. Utilizatorii finali nu au acces complet la toate funcționalitățile, inclusiv consola Dev, pentru a evita daunele potențiale atât în rețea, cât și în domeniu sau pe partea hardware.</b></p>
+        <!--  Alte lucruri ce poate face și utilizatorul final nu are acces: deblocare porturi în rețea folosind nmap și poți să creezi o instanță într-un VLAN anume, control avansat asupra rețelei, lucru cu regiștrii direct pe "hard", Terminal Emulator mult mai avansat care îți permite să faci mult mai multe lucruri atât în rețea, cât și în domeniu. (pentru curioși).-->
+        <br>
+        <br>
+        <br>
+        <p><b>Am creat și un Launcher care ajută la rularea simultană a mai multor conturi/aplicații. Din motive de securitate, dar totodată și din cauză că aplicațiile rulează mai eficient când sunt executate separat, am decis ca acest Launcher să deschidă mai multe sesiuni în paralel care să nu impacteze performanța aplicației. Adică vă puteți loga cu mai multe conturi în instanțe separate.</b></p>
+        
+    </div>
+
+    <br>
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='Download.html'" style="padding: 10px 20px; font-size: 16px; background-color: #ccff66; border: none; border-radius: 5px; cursor: pointer;">
+            To Dwonload Registration
+        </button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <button id="scrollButton" onclick="scrollToBottom()">▼◄</button>
+    <!-- <button id="scrollButton" onclick="scrollToBottom()">↓</button> -->
+	<button id="CVButton" onclick="window.location.href='CV.html'">CV</button>
+<div class="fog"></div> <!-- Div-ul pentru efectul de ceață -->
+
+<script>
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
+    function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+        document.body.classList.toggle('menu-open');
+    }
+</script>
+
+</body>
+</html>

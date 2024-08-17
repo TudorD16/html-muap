@@ -27,11 +27,11 @@ DETAILS = StringVar()
 def update_database_schema():
     conn = sqlite3.connect("contacts.db")
     cursor = conn.cursor()
-    # Adăugarea coloanelor noi dacă nu există deja
+    # Adaugarea coloanelor noi daca nu exista deja
     try:
         cursor.execute("ALTER TABLE `member` ADD COLUMN `surname` TEXT")
     except sqlite3.OperationalError:
-        pass  # Coloana există deja
+        pass  # Coloana exista deja
     
     try:
         cursor.execute("ALTER TABLE `member` ADD COLUMN `email` TEXT")
@@ -57,7 +57,6 @@ def update_database_schema():
     cursor.close()
     conn.close()
 
-# Rulăm funcția pentru a actualiza schema bazei de date
 update_database_schema()
 
 def Database():
@@ -178,7 +177,7 @@ def OnSelected(event):
     lbl_position.grid(row=3, sticky=W)
     lbl_phone = Label(ContactForm, text="Phone", font=('arial', 14), bd=5)
     lbl_phone.grid(row=4, sticky=W)
-    lbl_details = Label(ContactForm, text="Details", font=('arial', 14), bd=5)
+    lbl_details = Label(ContactForm, text="Other Details", font=('arial', 14), bd=5)
     lbl_details.grid(row=5, sticky=W)
 
     #===================ENTRY===============================

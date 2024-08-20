@@ -1,0 +1,1 @@
+Save as .txt is set for systems without a default mail app.

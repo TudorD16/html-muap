@@ -54,15 +54,22 @@ class MultiAppLauncher(tk.Tk):
 
     def launch_apps(self):
         try:
+            multiapp_path = os.path.join(os.getcwd(), "Multiapp.exe")
+
+            if not os.path.exists(multiapp_path):
+                raise FileNotFoundError("Multiapp.exe not found in the current directory.")
+
             num_instances = int(self.instances_entry.get())
             if num_instances <= 0:
                 raise ValueError("The number must be positive")
 
             for _ in range(num_instances):
-                process = subprocess.Popen(["Multiapp.exe"], cwd=os.getcwd())
+                process = subprocess.Popen([multiapp_path], cwd=os.getcwd())
                 self.processes.append(process)
 
             messagebox.showinfo("Success", f"{num_instances} instances have been launched.")
+        except FileNotFoundError as fnf_error:
+            messagebox.showerror("Error", fnf_error)
         except ValueError as ve:
             messagebox.showerror("Error", f"Invalid value: {ve}")
         except Exception as e:
@@ -70,13 +77,11 @@ class MultiAppLauncher(tk.Tk):
 
     def stop_apps(self):
         try:
-            # Identifică și oprește procesele utilizând psutil
             for proc in psutil.process_iter(['pid', 'name']):
                 if proc.info['name'] == 'Multiapp.exe':
-                    proc.terminate()  # Termină procesul
-                    proc.wait()  # Așteaptă ca procesul să fie închis complet
+                    proc.terminate()
+                    proc.wait()
 
-            # Golește lista de procese
             self.processes = []
             messagebox.showinfo("Stopped", "All instances of Multiapp.exe have been stopped.")
         except Exception as e:
@@ -95,28 +100,34 @@ class MultiAppLauncher(tk.Tk):
 
             for line in lines:
                 line = line.strip()
-                if line and '|' not in line and not line.startswith('---'):  # Sari peste liniile goale, titluri și linii cu '-'
-                    user_info = line.split()[0]  # Preia doar numele utilizatorului
+                if line and '|' not in line and not line.startswith('---'):
+                    user_info, password = line.split()[:2]
                     
                     if "product_key" in line:
-                        # Conturile care necesită product_key
                         account_label = tk.Label(self.frame_with_key, text=user_info, fg="#ccff66", bg="#333333", width=20, height=2, bd=5, relief="groove")
+                        account_label.bind("<Button-1>", lambda e, pwd=password: self.copy_to_clipboard(pwd))
                         account_label.grid(row=row_with_key, column=col_with_key, padx=10, pady=10)
                         col_with_key += 1
-                        if col_with_key == 3:  # Afișează 3 pe o linie
+                        if col_with_key == 3:
                             col_with_key = 0
                             row_with_key += 1
                     else:
-                        # Conturile care nu necesită product_key
                         account_label = tk.Label(self.frame_no_key, text=user_info, fg="#ccff66", bg="#333333", width=20, height=2, bd=5, relief="groove")
+                        account_label.bind("<Button-1>", lambda e, pwd=password: self.copy_to_clipboard(pwd))
                         account_label.grid(row=row_no_key, column=col_no_key, padx=10, pady=10)
                         col_no_key += 1
-                        if col_no_key == 3:  # Afișează 3 pe o linie
+                        if col_no_key == 3:
                             col_no_key = 0
                             row_no_key += 1
 
         except Exception as e:
             messagebox.showerror("Error", f"Failed to load accounts: {e}")
+
+    def copy_to_clipboard(self, password):
+        self.clipboard_clear()
+        self.clipboard_append(password)
+        self.update()  # Este necesar pentru ca clipboard-ul să fie actualizat imediat
+        messagebox.showinfo("Success", "Password copied to clipboard!")
 
     def on_frame_configure(self, event):
         """Reconfigurează scroll-ul pentru canvas."""

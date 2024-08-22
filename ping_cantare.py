@@ -24,25 +24,25 @@ class PingWorker(threading.Thread):
         self.queue.put((self.ip, status))
 
 class PingApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Monitorizare Dispozitive")
-        self.root.geometry("1000x600")
-        self.root.config( bg="gray40") # #cccccc
+    def __init__(self, rootSA):
+        self.rootSA = rootSA
+        self.rootSA.title("Stay Alive")
+        self.rootSA.geometry("1000x600")
+        self.rootSA.config( bg="gray40") # #cccccc
         
-        self.search_label = tk.Label(root, text="Căutare:", fg="#ccff66", bg="gray40")
+        self.search_label = tk.Label(rootSA, text="Search:", fg="#ccff66", bg="gray40")
         self.search_label.pack(pady=5)
         
-        self.search_entry = tk.Entry(root, fg="cyan", bg="#404040", bd=6, insertbackground="#ccff66")
+        self.search_entry = tk.Entry(rootSA, fg="cyan", bg="#404040", bd=6, insertbackground="#ccff66")
         self.search_entry.pack(pady=5)
         
-        self.search_button = tk.Button(root, text="Filtrează", fg="cyan", bg="gray20", bd=6, command=self.update_labels)
+        self.search_button = tk.Button(rootSA, text="Filter", fg="cyan", bg="gray20", bd=6, command=self.update_labels)
         self.search_button.pack(pady=5)
         
         # Canvas pentru scroll
-        self.canvas = tk.Canvas(root)
+        self.canvas = tk.Canvas(rootSA)
         self.canvas.config(bg="#cccccc")
-        self.scroll_y = tk.Scrollbar(root, orient="vertical", command=self.canvas.yview)
+        self.scroll_y = tk.Scrollbar(rootSA, orient="vertical", command=self.canvas.yview)
         self.scroll_y.pack(side="right", fill="y")
         self.canvas.pack(side="left", fill="both", expand=True)
         
@@ -56,8 +56,8 @@ class PingApp:
         self.results = {"groups": []}
         self.queue = Queue()
         
-        if not os.path.exists("Rezultate"):
-            os.makedirs("Rezultate")
+        if not os.path.exists("Results_IP"):
+            os.makedirs("Results_IP")
         
         self.update_interval = 10
         self.schedule_update()
@@ -65,9 +65,9 @@ class PingApp:
         self.create_menu()
     
     def create_menu(self):
-        menu = tk.Menu(self.root)
+        menu = tk.Menu(self.rootSA)
         #menu.config(bg="gray40")
-        self.root.config(menu=menu)
+        self.rootSA.config(menu=menu)
         
         file_menu = tk.Menu(menu, tearoff=0)
         menu.add_cascade(label="File", menu=file_menu)
@@ -117,7 +117,7 @@ class PingApp:
                 self.update_labels()
 
     def open_edit_json(self):
-        self.edit_window = tk.Toplevel(self.root)
+        self.edit_window = tk.Toplevel(self.rootSA)
         self.edit_window.title("Edit JSON")
         self.edit_window.geometry("800x400")
         self.edit_window.config(bg="gray40")
@@ -159,7 +159,7 @@ class PingApp:
 
     def schedule_update(self):
         threading.Thread(target=self.update_results, daemon=True).start()
-        self.root.after(self.update_interval * 1000, self.schedule_update)
+        self.rootSA.after(self.update_interval * 1000, self.schedule_update)
     
     def update_results(self):
         try:
@@ -193,7 +193,7 @@ class PingApp:
                     "results": self.results
                 }, output_file, indent=4)
                     
-            self.root.after(0, self.update_labels)
+            self.rootSA.after(0, self.update_labels)
             
         except Exception as e:
             print(f"Eroare: {str(e)}")
@@ -237,6 +237,6 @@ class PingApp:
                 row += 1
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = PingApp(root)
-    root.mainloop()
+    rootSA = tk.Tk()
+    app = PingApp(rootSA)
+    rootSA.mainloop()

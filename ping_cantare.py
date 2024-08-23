@@ -26,14 +26,14 @@ class PingWorker(threading.Thread):
 class PingApp:
     def __init__(self, rootSA):
         self.rootSA = rootSA
-        self.rootSA.title("Stay Alive")
+        self.rootSA.title("Listener - Device Checking")
         self.rootSA.geometry("1000x600")
-        self.rootSA.config( bg="gray40") # #cccccc
+        self.rootSA.config(bg="gray40")  # #cccccc
         
-        self.search_label = tk.Label(rootSA, text="Search:", fg="#ccff66", bg="gray40")
+        self.search_label = tk.Label(rootSA, font=("Arial", 12, "bold"), text="Search:", fg="#ccff66", bg="gray40")
         self.search_label.pack(pady=5)
         
-        self.search_entry = tk.Entry(rootSA, fg="cyan", bg="#404040", bd=6, insertbackground="#ccff66")
+        self.search_entry = tk.Entry(rootSA, fg="cyan", bg="#333333", bd=4, insertbackground="#ccff66")
         self.search_entry.pack(pady=5)
         
         self.search_button = tk.Button(rootSA, text="Filter", fg="cyan", bg="gray20", bd=6, command=self.update_labels)
@@ -53,6 +53,9 @@ class PingApp:
         self.frame.bind("<Configure>", lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
         self.canvas.configure(yscrollcommand=self.scroll_y.set)
         
+        # Bind mousewheel event
+        self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+        
         self.results = {"groups": []}
         self.queue = Queue()
         
@@ -63,6 +66,32 @@ class PingApp:
         self.schedule_update()
         
         self.create_menu()
+        
+        # Load the JSON file if it exists
+        #self.load_initial_json()
+    
+    def _on_mousewheel(self, event):
+        self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+    
+    '''
+    def load_initial_json(self):
+        json_file_path = "cantare.json"
+        if os.path.exists(json_file_path):
+            with open(json_file_path, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                self.results = {"groups": []}
+                for group in data.get("groups", []):
+                    group_name = group.get("name")
+                    ips = group.get("ips", {})
+                    if group_name and ips:
+                        self.results["groups"].append({
+                            "name": group_name,
+                            "ips": {ip: "Unknown" for ip in ips}
+                        })
+                self.update_labels()
+        else:
+            print(f"{json_file_path} not found.")
+    '''
     
     def create_menu(self):
         menu = tk.Menu(self.rootSA)
@@ -122,7 +151,7 @@ class PingApp:
         self.edit_window.geometry("800x400")
         self.edit_window.config(bg="gray40")
         
-        self.json_text = tk.Text(self.edit_window, wrap='word', undo=True, bg="black", fg="cyan", bd=6)
+        self.json_text = tk.Text(self.edit_window, wrap='word', undo=True, bg="black", fg="cyan", bd=6, insertbackground="#ccff66")
         self.json_text.pack(fill='both', expand=True, padx=10, pady=10)
         
         # Button to load JSON content
@@ -185,7 +214,7 @@ class PingApp:
                         group["ips"][ip] = status
             
             timestamp = time.strftime('%Y%m%d-%H%M%S')
-            result_file = f"Rezultate/scanare_{timestamp}.json"
+            result_file = f"Results_IP/Scann_{timestamp}.json"
             
             with open(result_file, 'w', encoding='utf-8') as output_file:
                 json.dump({
@@ -195,46 +224,71 @@ class PingApp:
                     
             self.rootSA.after(0, self.update_labels)
             
+            if not os.path.exists('Results'):
+                os.makedirs('Results')
+            
+            timestamp = time.strftime('%Y%m%d-%H%M%S')
+            result_file = f"Results_IP/Scann_{timestamp}.json"
+            
+            with open(result_file, 'w', encoding='utf-8') as output_file:
+                json.dump({
+                    "timestamp": time.strftime('%H:%M:%S'),
+                    "results": self.results
+                }, output_file, indent=4)
+                    
+            self.rootSA.after(0, self.update_labels)
+        
         except Exception as e:
-            print(f"Eroare: {str(e)}")
+            print(f"Error: {str(e)}")
     
     def update_labels(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
-        
-        columns = 2
-        row = 0
-        
+
         search_term = self.search_entry.get().strip().lower()
-        
-        # Afișează IP-urile care conțin termenul de căutare
+
+        max_groups_per_column = 30  # Numărul maxim de grupuri per coloană
+        row = 0
+        col = 0
+        groups_displayed = 0  # Numără grupurile afișate în coloană
+        column_spacing = 50  # Spațiul între coloane
+
+        # Afișează grupurile și IP-urile aferente
         for group in self.results.get("groups", []):
             group_name = group.get("name")
             ips = group.get("ips", {})
-            
-            # Verifică dacă grupul conține IP-uri care se potrivesc căutării
+
+            # Filtrare IP-uri pe baza termenului de căutare
             filtered_ips = {ip: status for ip, status in ips.items() if search_term in ip}
-            
+
             if filtered_ips:  # Afișează grupul doar dacă are IP-uri care se potrivesc căutării
-                tk.Label(self.frame, text=f"Grup: {group_name}", font=('Arial', 12, 'bold')).grid(row=row, column=0, columnspan=columns*2, padx=5, pady=10, sticky="w")
+                if groups_displayed >= max_groups_per_column:
+                    groups_displayed = 0
+                    row = 0
+                    col += 2  # Treci la următoarea pereche de coloane
+
+                tk.Label(self.frame, text=f"Group: {group_name}", font=('Arial', 12, 'bold')).grid(row=row, column=col, columnspan=2, padx=(column_spacing, 20), pady=10, sticky="w")
                 row += 1
-                
-                tk.Label(self.frame, text="IP Address", font=('Arial', 10, 'bold')).grid(row=row, column=0, padx=(5, 20), pady=5, sticky="w")
-                tk.Label(self.frame, text="Status", font=('Arial', 10, 'bold')).grid(row=row, column=1, padx=(5, 20), pady=5, sticky="w")
-                row += 1
-                
+
                 for ip, status in filtered_ips.items():
                     color = 'green' if status == "Online" else 'red'
-                    
+
                     ip_label = tk.Label(self.frame, text=ip, bg='white', borderwidth=1, relief="solid", padx=5, pady=2)
-                    ip_label.grid(row=row, column=0, padx=(5, 20), pady=2, sticky="w")
-                    
+                    ip_label.grid(row=row, column=col, padx=(column_spacing, 5), pady=2, sticky="w")
+
                     status_label = tk.Label(self.frame, text=status, bg=color, fg='white', borderwidth=1, relief="solid", padx=5, pady=2)
-                    status_label.grid(row=row, column=1, padx=(5, 20), pady=2, sticky="w")
-                    
+                    status_label.grid(row=row, column=col + 1, padx=(5, 20), pady=2, sticky="w")
+
                     row += 1
-                
-                row += 1
+
+                groups_displayed += 1
+
+                # Reinițializare rând la finalul grupului
+                if row >= max_groups_per_column:
+                    row = 0
+                    col += 2
+                    groups_displayed = 0
+
 
 if __name__ == "__main__":
     rootSA = tk.Tk()

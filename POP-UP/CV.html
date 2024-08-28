@@ -8,91 +8,100 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-		body {
-			font-family: Arial, sans-serif;
-			line-height: 1.6;
-			background-color: #f4f4f4;
-			margin: 0;
-			padding: 0;
-            opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-        @keyframes fadeIn {
+    body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
     to {
         opacity: 1;
     }
 }
 
-		.container {
-			width: 80%;
-			margin: 20px auto;
-			background: #fff;
-			padding: 20px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
+h3 {
+    color: #00ffff;
+}
 
-		header {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			border-bottom: 2px solid #333;
-			padding-bottom: 10px;
-		}
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #1e1e1e;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-		header h1 {
-			margin: 0;
-		}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ffb804;
+    padding-bottom: 10px;
+}
 
-		header p {
-			margin: 5px 0;
-		}
+header h1 {
+    margin: 0;
+}
 
-		header img {
-			width: 150px;
-			height: 150px;
-			border-radius: 50%;
-			object-fit: cover;
-		}
+header p {
+    margin: 5px 0;
+}
 
-		section {
-			margin: 20px 0;
-		}
+header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-		h2 {
-			color: #333;
-			border-bottom: 1px solid #333;
-			padding-bottom: 5px;
-		}
+section {
+    margin: 20px 0;
+}
 
-		.job, .school, .project {
-			margin: 10px 0;
-		}
+h2 {
+    color: #ffb804;
+    border-bottom: 1px solid #ffb804;
+    padding-bottom: 5px;
+}
 
-		ul {
-			list-style-type: disc;
-			margin-left: 20px;
-		}
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
 
-		ul li {
-			margin: 5px 0;
-		}
+ul li {
+    margin: 5px 0;
+}
 
-		.progress {
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 5px 0 15px;
-        }
+.progress-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
 
-        .progress-bar {
-            height: 20px;
-            background-color: #ffb804;
-            text-align: right;
-            padding-right: 5px;
-            line-height: 20px; /* Aligns text vertically */
-            color: white;
-        }
+.progress {
+    width: 90%;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.progress-bar {
+    height: 7px;
+    background-color: #ffb804;
+}
+
+.progress-percentage {
+    color: #ffb804;
+    font-weight: bold;
+}
         /* Animatii de pop-up */
         .pop-up {
             opacity: 0;
@@ -253,90 +262,186 @@
         <section class="skills pop-up">
             <h2>Competențe</h2>
             <ul>
-                <li>C++: Nivel Expert</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 90%;">90%</div>
-                </div>
-                <li>Python: Nivel Expert</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 90%;">90%</div>
-                </div>
-                <li>C#: Nivel Intermediar</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 70%;">70%</div>
-                </div>
-				<li>Assembly: Nivel Începator</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-                <li>SQL: Nivel Basic</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 50%;">50%</div>
-                </div>
-                <li>PL-SQL: Nivel Începator</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-                <li>Java: Nivel Începător</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-                <li>Gambas 3: Nivel Basic</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 50%;">50%</div>
-                </div>
-                <li>Java Script: Nivel Începător</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-                <li>HTML & CSS: Nivel Intermediar</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 70%;">70%</div>
-                </div>
-                <li>Microsoft Word: Nivel Experimentat</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 80%;">80%</div>
-                </div>
-                <li>Microsoft Excel: Nivel Experimentat</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 80%;">80%</div>
-                </div>
-                <li>Microsoft Power Point: Nivel Experimentat</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 80%;">80%</div>
-                </div>
-                <li>CANoe Vector: Nivel Avansat</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 85%;">85%</div>
-                </div>
-                <li>Photoshop: Nivel Intermediar</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 70%;">70%</div>
-                </div>
+                <li>
+                    <span>C++: Nivel Expert</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 90%;"></div>
+                        </div>
+                        <span class="progress-percentage">90%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Python: Nivel Expert</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 90%;"></div>
+                        </div>
+                        <span class="progress-percentage">90%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>C#: Nivel Intermediar</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <span class="progress-percentage">70%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Assembly: Nivel Începator</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <span class="progress-percentage">30%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>SQL: Nivel Basic</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 50%;"></div>
+                        </div>
+                        <span class="progress-percentage">50%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>PL-SQL: Nivel Începator</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <span class="progress-percentage">30%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Java: Nivel Începător</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <span class="progress-percentage">30%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Gambas 3: Nivel Basic</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 50%;"></div>
+                        </div>
+                        <span class="progress-percentage">50%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Java Script: Nivel Începător</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <span class="progress-percentage">30%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>HTML & CSS: Nivel Intermediar</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <span class="progress-percentage">70%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Microsoft Word: Nivel Experimentat</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;"></div>
+                        </div>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Microsoft Excel: Nivel Experimentat</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;"></div>
+                        </div>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Microsoft Power Point: Nivel Experimentat</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;"></div>
+                        </div>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>CANoe Vector: Nivel Avansat</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <span class="progress-percentage">85%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Photoshop: Nivel Intermediar</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <span class="progress-percentage">70%</span>
+                    </div>
+                </li>
             </ul>
-        </section>
+        </section>        
 
         <section class="languages pop-up">
             <h2>Limbi Străine</h2>
             <ul>
-                <li>Limba engleză: Nivel Avansat</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 85%;">85%</div>
-                </div>
-                <li>Limba spaniolă: Nivel Începător</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-                <li>Limba germană: Nivel Elementar</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 10%;">10%</div>
-                </div>
-                <li>Limba franceză: Nivel Elementar</li>
-                <div class="progress pop-up">
-                    <div class="progress-bar" style="width: 10%;">10%</div>
-                </div>
+                <li>
+                    <span>Limba engleză: Nivel Avansat</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <span class="progress-percentage">85%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Limba spaniolă: Nivel Începător</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 30%;"></div>
+                        </div>
+                        <span class="progress-percentage">30%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Limba germană: Nivel Elementar</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 10%;"></div>
+                        </div>
+                        <span class="progress-percentage">10%</span>
+                    </div>
+                </li>
+                <li>
+                    <span>Limba franceză: Nivel Elementar</span>
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 10%;"></div>
+                        </div>
+                        <span class="progress-percentage">10%</span>
+                    </div>
+                </li>
             </ul>
         </section>
+        
     </div>
 
     <script>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiapp - System Requirements & Software Versions Specifications</title>
+    <link rel="icon" type="image/png" href="help/technology.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #1c1c1c, #333);
+            color: #f0f0f0;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            transition: background-color 0.5s ease;
+        }
+        header:hover {
+            background: linear-gradient(90deg, #262626, #444);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .intro {
+            text-align: center;
+            margin: 60px 0;
+            animation: fadeIn 1s ease-out;
+        }
+        .intro h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #ffcc00;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .intro h1:hover {
+            transform: scale(1.1);
+            color: #ffdd44;
+        }
+        .intro p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .features {
+            text-align: center;
+            margin: 60px 0;
+        }
+        .feature {
+            display: inline-block;
+            width: 300px;
+            margin: 0 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease, background-color 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .feature img {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+        .feature img:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+        .feature h3 {
+            font-size: 1.7em;
+            margin-bottom: 10px;
+            color: #00ccff;
+            transition: color 0.3s ease;
+        }
+        .feature h3:hover {
+            color: #00ffff;
+        }
+        .feature p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+        .cta {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            text-align: center;
+            padding: 40px;
+            margin: 60px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+        .cta:hover {
+            background-color: #333;
+            transform: scale(1.02);
+        }
+        .cta h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .cta a {
+            background-color: #ccff66;
+            color: #333;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+        .cta a:hover {
+            background-color: #61f5b0;
+            transform: scale(1.05);
+        }
+        /* Stilizarea specifică pentru link-ul de contact */
+        .contact-link {
+            display: inline-block;
+            background-color: #ccff66;
+            color: #121212;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px auto;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+        .contact-link:hover {
+            background-color: #61f5b0;
+            transform: scale(1.05);
+        }
+        .bug-link {
+            display: inline-block;
+            background-color: #ccff66;
+            color: #121212;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px auto;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            float: right;
+            cursor: pointer;
+        }
+        .bug-link:hover {
+            background-color: #61f5b0;
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #222;
+            color: #f0f0f0;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9em;
+            transition: background-color 0.5s ease;
+        }
+        .footer:hover {
+            background-color: #1a1a1a;
+        }
+        /* Animatii de pop-up */
+        .pop-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .pop-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Multiapp - System Requirements & Software Versions Specifications</h1>
+        <p>The ideal software for the IT department</p>
+    </div>
+</header>
+
+<div class="container pop-up">
+    <section class="intro pop-up">
+        <h1>Multiapp - System Requirements</h1>
+        <p>The minimum requirements must be respected for the application to run optimally.</p>
+    </section>
+
+    <section class="features pop-up">
+        <div class="feature pop-up">
+            <img src="help/coins2.png" alt="Logo Multiapp">
+            <h3><b><u>Minimum system requirements:</u></b></h3>
+            <p><b>Operating System:</b> Windows 10 (x64).</p>
+            <p><b>Processor:</b> Între 1 și 2 GHz.</p>
+            <p><b>RAM:</b> 4 GB.</p>
+            <p><b>Disk space:</b> 300 MB free for installation and operation.</p>
+            <p><b>Internet connection:</b> Recommended for network functionalities.</p>
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <section class="intro pop-up">
+        <h1>Multiapp - Software Versions Specifications</h1>
+        <p>The versions of the Multiapp application include many functionalities. Discover them now!</p>
+    </section>
+
+<div class="features pop-up" id="pricing">
+    <div class="feature pop-up">
+        <h3>Standard</h3>
+        <div class="price pop-up"><b>50.00 RON</b></div>
+        <p>Basic functionality, Email support, Regular updates.<br><br>- IT Account (Copy App, Explorer Mode, Text Editor, Paint, Find & Replace, Create/Extract Zip, PDF to Word, Backup Utility, Rename Utility)<br><br>- Task Manager<br><br>- Password Generator<br><br>- File Encryption<br><br>- Cracking ZIP Passwords.<br><br><b><i> Veiw Help Page for detailes.<br><br><br><br><br><br><br><br><br><br><br><br><br></b></i></p>
+        <a class="contact-link pop-up" onclick="window.open('buy-product.html', '_blank')">Buy Now</a>
+    </div>
+    <div class="feature pop-up">
+        <h3>Premium</h3>
+        <div class="price pop-up"><b>70.00 RON</b></div>
+        <p>Advanced functionality, Email support, Priority updates.<br><br>- IT Account (Copy App, Explorer Mode, Text Editor, Paint, Find & Replace, Open the Equipment Sheet, Create/Extract Zip, Pdf to Word, Backup Utility, Rename Utility, Network Console, Get IP & MAC, Ping Tool, Port Scanner, AI Chatbot, PDF Tools, System Info, Real Time System Info, Screen Events, Comparator)<br><br>- Task manager<br><br>- Password Manager + Generating functions<br><br>- File Encryption<br><br>- Cracking ZIP Passwords<br><br>- Terminal Emulator<br><br>- Network Bandwidth Monitoring<br><br>- File Organizer.<br><br><b><i></i> Veiw Help Page for detailes.</b></i></p>
+        <a class="contact-link pop-up" onclick="window.open('buy-product.html', '_blank')">Buy Now</a>
+    </div>
+    <div class="feature pop-up">
+        <h3>Enterprise</h3>
+        <div class="price pop-up"><b>150.00 RON</b></div>
+        <p>Full functionality, Email support, Priority updates.<br><br><b><i> Veiw Help Page for detailes.</b></i><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+        <a class="contact-link pop-up" onclick="window.open('buy-product.html', '_blank')">Buy Now</a>
+    </div>
+</div>
+<br>
+    <br>
+
+<section class="cta pop-up">
+    <h2>Get started now!</h2>
+    <p>Discover the power of Multiapp and revolutionize your IT department.</p>
+    <br>
+    <a href="download.html">Download</a>
+    <br>
+    <br>
+    <br>
+    <a href="help.html">Help Page</a>
+</section>
+<a class="contact-link pop-up" onclick="window.open('contact.html', '_blank')">Contact</a>
+<a class="contact-link pop-up" onclick="window.open('FAQ.html', '_blank')">FAQ</a>
+<a class="bug-link pop-up" onclick="window.open('suport.html', '_blank')">Report a Bug</a>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Multiapp. All rights reserved. | Designed for IT Professionals</p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const popUpElements = document.querySelectorAll('.pop-up');
+    
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+    
+            popUpElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+</script>
+</body>
+</html>

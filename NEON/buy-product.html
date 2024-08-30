@@ -386,7 +386,7 @@
                     const subject = encodeURIComponent(form.querySelector('input[name="subject"]:checked').nextSibling.textContent.trim());
                     const body = encodeURIComponent(textArea.value);
                     const emailSubject = `Buy Multiapp - ${noteType} - ${subject}`;
-                    window.location.href = `mailto:tudor.marmureanu@outlook.com?subject=${emailSubject}&body=${body}`;
+                    window.location.href = `mailto:suport@muap.ro?subject=${emailSubject}&body=${body}`;
                 });
 
                 saveTxtButton.addEventListener("click", () => {
@@ -394,7 +394,7 @@
                     const subject = form.querySelector('input[name="subject"]:checked').nextSibling.textContent.trim();
                     const title = titleInput.value || "Untitled";
                     const content = textArea.value;
-                    const recipient = "tudor.marmureanu@outlook.com";
+                    const recipient = "suport@muap.ro";
 
                     const textContent = `To: ${recipient}\nTitle: ${title}\nType: ${noteType}\nSubject: ${subject}\nContent:\n${content}`;
 

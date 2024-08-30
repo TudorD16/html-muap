@@ -342,13 +342,13 @@
                 sendButton.addEventListener("click", () => {
                     const subject = encodeURIComponent(titleInput.value);
                     const body = encodeURIComponent(textArea.value);
-                    window.location.href = `mailto:tudor.marmureanu@outlook.com?subject=${subject}&body=${body}`;
+                    window.location.href = `mailto:suport@muap.ro?subject=${subject}&body=${body}`;
                 });
 
                 saveTxtButton.addEventListener("click", () => {
                     const title = titleInput.value || "Untitled";
                     const content = textArea.value;
-                    const recipient = "tudor.marmureanu@outlook.com";
+                    const recipient = "suport@muap.ro";
 
                     const textContent = `To: ${recipient}\nTitle: ${title}\nContent:\n${content}`;
 

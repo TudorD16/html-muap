@@ -18,3 +18,4 @@ test greu, nu..
 al doilea..
 update?..
 fac update totusi..
+ok..

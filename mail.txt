@@ -10,3 +10,4 @@ op..
 jhg..
 hello..
 psst, aici..
+hei, de ce nu raspunzi? Esti ok..

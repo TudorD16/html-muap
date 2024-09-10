@@ -20,3 +20,4 @@ update?..
 fac update totusi..
 ok..
 ajutor..
+help adica..

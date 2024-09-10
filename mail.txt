@@ -1,23 +1,23 @@
-Versions older than 0.8.4 will no longer receive technical support starting from October 1, 2024; please download the latest version from the website..
-Multiapp uses advanced data encryption technologies and communication with the domain is efficient and secure. In any case, the application stores data locally and uses the domain to analyze potential errors or conflicts and to repair itself..
-test..
-test1..
-ubiouhiohoih..
-kjgbgvgjgvyujyfvyfhyff..
-kkl..
-kk..
-op..
-jhg..
-hello..
-psst, aici..
-hei, de ce nu raspunzi? Esti ok..
-ggg..
+Multiapp 0.8.4 will no longer receive technical support::Versions older than 0.8.4 will no longer receive technical support starting from October 1, 2024; please download the latest version from the website..
+Multiapp is safe or not?::Multiapp uses advanced data encryption technologies and communication with the domain is efficient and secure. In any case, the application stores data locally and uses the domain to analyze potential errors or conflicts and to repair itself..
+1::test..
+2::test1..
+3::ubiouhiohoih..
+4::kjgbgvgjgvyujyfvyfhyff..
+5::kkl..
+6::kk..
+7::op..
+8::jhg..
+9::hello..
+10::psst, aici..
+hei!::hei, de ce nu raspunzi? Esti ok..
+11::ggg..
 hy..
-testare, nu..
-test greu, nu..
-al doilea..
-update?..
-fac update totusi..
-ok..
-ajutor..
-help adica..
+12::testare, nu..
+13::test greu, nu..
+14::al doilea..
+15::update?..
+16::fac update totusi..
+17::ok..
+18::ajutor..
+19::help adica..

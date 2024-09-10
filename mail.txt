@@ -1,0 +1,2 @@
+Versions older than 0.8.4 will no longer receive technical support starting from October 1, 2024. Please download the latest version from the website.
+Multiapp uses advanced data encryption technologies and communication with the domain is efficient and secure. In any case, the application stores data locally and uses the domain to analyze potential errors or conflicts and to repair itself.

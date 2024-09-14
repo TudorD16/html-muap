@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Tic-Tac-Toe Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00ffff, #ff00ff);
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: #000;
+            border: 2px solid #00ffff;
+            font-size: 2rem;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .cell:hover {
+            background: rgba(255, 0, 255, 0.2);
+        }
+        .status {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #00ffff;
+        }
+        .status.winner {
+            color: #ff00ff;
+        }
+        .refresh-message {
+            margin-top: 10px;
+            color: #ff00ff;
+            font-size: 1.2rem;
+            display: none; /* Ascuns inițial */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic-Tac-Toe</h1>
+        <div class="board" id="board"></div>
+        <div class="status" id="status">Player X's turn</div>
+        <div class="refresh-message" id="refresh-message">Refreshing in 3 seconds...</div> <!-- Mesajul de refresh -->
+    </div>
+
+    <script>
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameOver = false;
+
+        const boardElement = document.getElementById('board');
+        const statusElement = document.getElementById('status');
+        const refreshMessageElement = document.getElementById('refresh-message');
+
+        function createBoard() {
+            boardElement.innerHTML = '';
+            board.forEach((cell, index) => {
+                const cellElement = document.createElement('div');
+                cellElement.className = 'cell';
+                cellElement.textContent = cell;
+                cellElement.addEventListener('click', () => makeMove(index));
+                boardElement.appendChild(cellElement);
+            });
+        }
+
+        function makeMove(index) {
+            if (board[index] === '' && !gameOver) {
+                board[index] = currentPlayer;
+                createBoard();
+                checkWinner();
+                if (!gameOver) {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    statusElement.textContent = `Player ${currentPlayer}'s turn`;
+                }
+            }
+        }
+
+        function checkWinner() {
+            const winningCombinations = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+                [0, 4, 8], [2, 4, 6]
+            ];
+
+            winningCombinations.forEach(combination => {
+                const [a, b, c] = combination;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    statusElement.textContent = `Player ${board[a]} wins!`;
+                    statusElement.classList.add('winner');
+                    gameOver = true;
+                    showRefreshMessage();
+                }
+            });
+
+            if (!board.includes('') && !gameOver) {
+                statusElement.textContent = "It's a draw!";
+                gameOver = true;
+                showRefreshMessage();
+            }
+        }
+
+        function showRefreshMessage() {
+            refreshMessageElement.style.display = 'block'; // Afișează mesajul
+            setTimeout(() => {
+                location.reload();
+            }, 3000); // Refresh după 3 secunde
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+Office Reader 1.0 Software License
+
+Copyright (c) 2024 Tudor Marmureanu
+
+1. Permission
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, subject to the following conditions:
+
+2. Restrictions
+- The Software may not be sold, sublicensed, or distributed in any manner not specified in this license without the prior written consent of the copyright holder.
+- Modifications to the Software must be documented and included in the documentation distributed with the Software.
+
+3. Warranty and Liability
+The Software is provided "as is", without any warranty of any kind, express or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. In no event shall the copyright holder be liable for any direct, indirect, incidental, special, or consequential damages, including but not limited to damages for loss of profits, interruption of business, or loss of information, arising out of the use or inability to use the Software.
+
+4. Acceptance of Terms
+By using this Software, you agree to the terms and conditions of this license. If you do not agree with these terms, do not use the Software and return or destroy it.
+
+Tudor Marmureanu

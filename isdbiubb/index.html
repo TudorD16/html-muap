@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +43,7 @@ p {
   color: #fff;
   position: absolute;
   left: 50%;
-  top: 30%;
+  top: 35%;
   transform: translateX(-50%);
   white-space: nowrap;
   text-align: center;
@@ -54,7 +55,7 @@ p {
   align-items: center;
   justify-content: center;
   left: 50%;
-  top: 60%;
+  top: 80%;
   transform: translateX(-50%);
   text-decoration: none;
   color: #fff;
@@ -67,6 +68,29 @@ p {
 }
 
 .split.left .btn:hover {
+  background-color: var(--left-btn-hover-color);
+  border-color: var(--left-btn-hover-color);
+}
+
+.btn1 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 90%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: #fff;
+  border: #fff solid 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 15rem;
+  padding: 1.5rem;
+}
+
+.split.left .btn1:hover {
   background-color: var(--left-btn-hover-color);
   border-color: var(--left-btn-hover-color);
 }
@@ -92,7 +116,7 @@ p {
 
 .split.left {
   left: 0;
-  background: url('ps.jpg');
+  background: url('help/coins2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -107,7 +131,7 @@ p {
 
 .split.right {
   right: 0;
-  background: url('xbox.jpg');
+  background: url('help/database5.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -161,13 +185,14 @@ p {
     <div class="container">
       <div class="split left">
         <h1>Multiapp Solution</h1>
-        <p>With Multiapp, your IT department<br>can manage tasks more quickly and efficiently.<br>The integrated automation transforms<br>daily challenges into<br> simple solutions.</p>
-        <a href="home.html" class="btn">Buy Now</a>
+        <p>With Multiapp,<br>your IT department<br>can manage tasks more<br>quickly and efficiently.<br>The integrated automation<br>transforms daily challenges<br>into simple solutions.</p>
+        <a href="home.html" class="btn" target="_blank">Buy Now</a>
+        <a href="multiapp-short.html" class="btn1" target="_blank">Short intro</a>
       </div>
       <div class="split right">
         <h1>Other Solutions</h1>
-        <p>Discover the services<br>that could come to your help at a given moment!</p>
-        <a href="other-services.html" class="btn">View</a>
+        <p>Discover the services<br>that could come<br>to your help at a<br>given moment!</p>
+        <a href="other-services.html" class="btn" target="_blank">View</a>
       </div>
     </div>
 

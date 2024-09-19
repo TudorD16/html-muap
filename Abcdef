@@ -1,0 +1,47 @@
+const predefinedCodes = [
+  { code: '123456', license: 'ABCD-1234-EFGH-5678' },
+  { code: '654321', license: 'IJKL-5678-MNOP-1234' },
+  { code: '112233', license: 'QRST-1122-UVWX-3344' },
+  { code: '445566', license: 'YZAB-4455-CDEF-6677' }
+];
+
+const codes = document.querySelectorAll('.code');
+const info = document.querySelector('.info');
+let enteredCode = '';
+
+codes[0].focus();
+
+codes.forEach((code, idx) => {
+  code.addEventListener('keydown', (e) => {
+    if (e.key >= 0 && e.key <= 9) {
+      codes[idx].value = '';
+      setTimeout(() => {
+        if (codes[idx + 1]) {
+          codes[idx + 1].focus();
+        }
+      }, 10);
+    } else if (e.key === 'Backspace') {
+      setTimeout(() => {
+        if (codes[idx - 1]) {
+          codes[idx - 1].focus();
+        }
+      }, 10);
+    }
+  });
+
+  code.addEventListener('input', () => {
+    enteredCode = Array.from(codes).map(c => c.value).join('');
+
+    if (enteredCode.length === 6) {
+      const matchingCode = predefinedCodes.find(item => item.code === enteredCode);
+      
+      if (matchingCode) {
+        info.textContent = `License Key: ${matchingCode.license}`;
+        info.style.color = 'lime';
+      } else {
+        info.textContent = 'Invalid Developer Code. Please try again.';
+        info.style.color = 'red';
+      }
+    }
+  });
+});

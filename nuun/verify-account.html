@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Muli:300,700&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #222;
+        font-family: 'Muli', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #121212;
+        border: 3px #FF00FF solid;
+        border-radius: 10px;
+        padding: 30px;
+        max-width: 1000px;
+        text-align: center;
+        color: #ccff66;
+      }
+
+      .code-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 40px 0;
+      }
+
+      .code {
+        background-color: #222;
+        color: aqua;
+        caret-color: transparent;
+        border-radius: 5px;
+        font-size: 75px;
+        height: 120px;
+        width: 100px;
+        border: 1px solid aqua;
+        margin: 5px;
+        text-align: center;
+        font-weight: 300;
+        -moz-appearance: textfield;
+      }
+
+      .code::-webkit-outer-spin-button,
+      .code::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .code:valid {
+        border-color: aqua;
+        box-shadow: 0 0 30px #00FFFF, 0 0 20px #FF00FF;
+      }
+
+      .info {
+        background-color: #222;
+        display: inline-block;
+        padding: 10px;
+        line-height: 20px;
+        max-width: 400px;
+        color: #777;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 600px) {
+        .code-container {
+          flex-wrap: wrap;
+        }
+
+        .code {
+          font-size: 60px;
+          height: 80px;
+          max-width: 70px;
+        }
+      }
+    </style>
+    <title>Claim your product key</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Claim your product key.</h2>
+      <p>
+        Please enter the Developer code first. (Sent via email.)<br />
+        By entering this 6-digit numeric code, the requested license key will be
+        displayed.
+      </p>
+      <div class="code-container">
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+        <input type="number" class="code" placeholder="0" min="0" max="9" required>
+      </div>
+      <small class="info">
+        Your product key will be displayed here.
+      </small>
+    </div>
+
+    <script>
+      const predefinedCodes = [
+        { code: '123456', license: 'ABCD-1234-EFGH-5678' },
+        { code: '654321', license: 'IJKL-5678-MNOP-1234' },
+        { code: '112233', license: 'QRST-1122-UVWX-3344' },
+        { code: '445566', license: 'YZAB-4455-CDEF-6677' }
+      ];
+
+      const codes = document.querySelectorAll('.code');
+      const info = document.querySelector('.info');
+      let enteredCode = '';
+
+      codes[0].focus();
+
+      codes.forEach((code, idx) => {
+        code.addEventListener('keydown', (e) => {
+          if (e.key >= 0 && e.key <= 9) {
+            codes[idx].value = '';
+            setTimeout(() => codes[idx + 1]?.focus(), 10);
+          } else if (e.key === 'Backspace') {
+            setTimeout(() => codes[idx - 1]?.focus(), 10);
+          }
+        });
+
+        code.addEventListener('input', () => {
+          enteredCode = Array.from(codes).map(c => c.value).join('');
+
+          if (enteredCode.length === 6) {
+            const matchingCode = predefinedCodes.find(item => item.code === enteredCode);
+            
+            if (matchingCode) {
+              info.textContent = `License Key: ${matchingCode.license}`;
+              info.style.color = 'lime';
+            } else {
+              info.textContent = 'Invalid Developer Code. Please try again.';
+              info.style.color = 'red';
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

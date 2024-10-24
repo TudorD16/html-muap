@@ -1,0 +1,21 @@
+Să presupunem că un utilizator dorește să creeze un alt cont Multiapp. Totul decurge normal: finalizez configurarea contului, îi ofer utilizatorului numele de utilizator, parola și detaliile suplimentare necesare.
+
+Acum, acest utilizator vrea să plece la o cafenea cu laptopul său, dar nu are acces la internet acolo. Cu toate acestea, el vrea să folosească acel cont. Din păcate, accesul la contul respectiv nu funcționează offline.
+
+Problema principală este că Multiapp utilizează un serviciu numit Connector, care rulează împreună cu aplicația și are nevoie să comunice cu serverul nostru pentru a funcționa corect. Fără o conexiune la internet, Connector nu poate face această comunicare, ceea ce înseamnă că utilizatorul nu poate accesa contul.
+
+De fiecare dată când utilizatorul încearcă să se autentifice în contul Multiapp, aplicația trebuie să sincronizeze datele cu serverul, deoarece datele contului nu sunt stocate local pe laptopul utilizatorului. Chiar dacă utilizatorul s-a conectat anterior la internet și a reușit să acceseze contul, odată ce conexiunea la internet este întreruptă, contul nu mai este funcțional offline.
+
+Pentru a rezolva această problemă și pentru a preveni astfel de situații în viitor, voi crea un nou installer (wizard) al aplicatiei Multiapp ori de cate ori se doreste sa se creeze un cont nou al aplicatiei. Dupa reinstalarea Multiapp pe dispozitivul utilizatorului,  contul poate funcționa și fără o conexiune la internet. Astfel, utilizatorul va putea folosi contul Multiapp offline, oriunde s-ar afla, chiar și atunci când nu are acces la internet.
+
+#####################################
+
+Let's assume a user wants to create another Multiapp account. Everything proceeds normally: I complete the account setup, provide the user with the username, password, and the additional necessary details.
+
+Now, this user wants to go to a café with their laptop but doesn't have internet access there. However, they still want to use that account. Unfortunately, access to that account doesn't work offline.
+
+The main issue is that Multiapp uses a service called Connector, which runs alongside the application and needs to communicate with our server to function properly. Without an internet connection, Connector cannot perform this communication, meaning the user cannot access the account.
+
+Each time the user tries to log into the Multiapp account, the application must sync data with the server because the account data is not stored locally on the user's laptop. Even if the user has previously connected to the internet and successfully accessed the account, once the internet connection is lost, the account is no longer functional offline.
+
+To solve this problem and prevent such situations in the future, I will create a new installer (wizard) for the Multiapp application whenever a new account needs to be created. After reinstalling Multiapp on the user's device, the account can function without an internet connection. This way, the user will be able to use the Multiapp account offline, wherever they are, even when they don’t have access to the internet.
